@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals Under $10 | Mag+ Singapore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                MAG<span class="logo-plus">+</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <!-- Add the link to the new page and make it active -->
+                    <li><a href="under10.html" class="active">Under $10</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Unbeatable Deals Under $10</h1>
+                <p>Everything on this page is an absolute bargain. Grab them while they last!</p>
+            </div>
+        </section>
+
+        <!-- Use the same product listing section as products.html -->
+        <section class="product-listing">
+            <div class="container">
+                <!-- We can reuse the same product grid. JS will handle the filtering. -->
+                <div class="product-grid" id="product-grid">
+                    <!-- Products are copied from products.html for now -->
+                    <!-- In a real dynamic site, JS would populate this -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer is identical to other pages -->
+        <div class="container">
+           <!-- ... (copy footer content from index.html) ... -->
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

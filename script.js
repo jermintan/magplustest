@@ -1,7 +1,13 @@
 // --- The ONE correct function to load all hero content ---
+// In script.js
+
 function loadHeroContent() {
     const heroSection = document.querySelector('.hero');
     if (!heroSection) return;
+
+    // Select the elements we need to reveal
+    const heroHeadline = document.querySelector('.hero h1');
+    const heroSubtext = document.querySelector('.hero p');
 
     const workerUrl = 'https://magplus-cms-v2.uxjermin.workers.dev';
 
@@ -11,21 +17,24 @@ function loadHeroContent() {
             return response.json();
         })
         .then(data => {
-            // Check if data and properties exist before trying to use them
-            if (data && data.imageUrl) {
-                // Use the new property name: imageUrl
-                heroSection.style.backgroundImage = `linear-gradient(rgba(13, 71, 161, 0.7), rgba(233, 30, 99, 0.7)), url('${data.imageUrl}')`;
-            }
+            // Update the content (this happens while it's still invisible)
             if (data && data.headline) {
-                // Set the headline text
-                document.querySelector('.hero h1').textContent = data.headline;
+                heroHeadline.textContent = data.headline;
             }
             if (data && data.subtext) {
-                // Set the subtext
-                document.querySelector('.hero p').textContent = data.subtext;
+                heroSubtext.textContent = data.subtext;
+            }
+            if (data && data.imageUrl) {
+                heroSection.style.backgroundImage = `linear-gradient(rgba(13, 71, 161, 0.7), rgba(233, 30, 99, 0.7)), url('${data.imageUrl}')`;
             }
         })
-        .catch(error => console.error('Error loading hero content:', error));
+        .catch(error => console.error('Error loading hero content:', error))
+        .finally(() => {
+            // THIS IS THE NEW PART:
+            // After everything is done, remove the loading class to reveal the content.
+            if (heroHeadline) heroHeadline.classList.remove('content-loading');
+            if (heroSubtext) heroSubtext.classList.remove('content-loading');
+        });
 }
 
 

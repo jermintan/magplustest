@@ -425,8 +425,3 @@ footer {
     display: none; /* We will toggle display with JS */
 }
 
-/* Add this to the bottom of your style.css */
-.content-loading {
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-}

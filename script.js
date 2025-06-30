@@ -1,13 +1,18 @@
 // --- The ONE correct function to load all hero content ---
 // In script.js
 
+// In script.js - GUARANTEED NEW VERSION
+
 function loadHeroContent() {
     const heroSection = document.querySelector('.hero');
     if (!heroSection) return;
 
-    // Select the elements we need to reveal
-    const heroHeadline = document.querySelector('.hero h1');
-    const heroSubtext = document.querySelector('.hero p');
+    // Target elements by their new, unique IDs
+    const heroHeadline = document.getElementById('hero-headline');
+    const heroSubtext = document.getElementById('hero-subtext');
+
+    // Ensure the elements exist before proceeding
+    if (!heroHeadline || !heroSubtext) return;
 
     const workerUrl = 'https://magplus-cms-v2.uxjermin.workers.dev';
 
@@ -17,7 +22,7 @@ function loadHeroContent() {
             return response.json();
         })
         .then(data => {
-            // Update the content (this happens while it's still invisible)
+            // If the fetch is successful, replace the "Loading..." text
             if (data && data.headline) {
                 heroHeadline.textContent = data.headline;
             }
@@ -28,12 +33,11 @@ function loadHeroContent() {
                 heroSection.style.backgroundImage = `linear-gradient(rgba(13, 71, 161, 0.7), rgba(233, 30, 99, 0.7)), url('${data.imageUrl}')`;
             }
         })
-        .catch(error => console.error('Error loading hero content:', error))
-        .finally(() => {
-            // THIS IS THE NEW PART:
-            // After everything is done, remove the loading class to reveal the content.
-            if (heroHeadline) heroHeadline.classList.remove('content-loading');
-            if (heroSubtext) heroSubtext.classList.remove('content-loading');
+        .catch(error => {
+            // If the fetch fails, show an error message instead of "Loading..."
+            console.error('Error loading hero content:', error);
+            heroHeadline.textContent = 'Could not load content';
+            heroSubtext.textContent = 'Please try refreshing the page.';
         });
 }
 
